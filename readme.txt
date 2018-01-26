@@ -1,6 +1,6 @@
 This is a json encoder/decoder and is loaded into the pjson locale.
 
-The main functions are enc and dec:
+The main functions are enc, enc_dict and dec:
 
    enc_pjson_ 1 2 3;'hello'
 [[1,2,3],"hello"]
@@ -9,6 +9,21 @@ The main functions are enc and dec:
 ┌─────┬─────┐
 │1 2 3│hello│
 └─────┴─────┘
+
+   enc_dict_pjson_ ('name';'anne'),('city';'rome'),:'term';7
+{"name":"anne",
+"city":"rome",
+"term":7
+}
+
+   dec_pjson_ enc_dict_pjson_ ('name';'anne'),('city';'rome'),:'term';7
+┌────┬────┐
+│name│anne│
+├────┼────┤
+│city│rome│
+├────┼────┤
+│term│7   │
+└────┴────┘
 
 See demo folder for examples.
 

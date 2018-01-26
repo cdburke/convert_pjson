@@ -12,6 +12,7 @@ remq=: ]`(}.@}:)@.('"' = {.)
 isboxed=: 0 < L.
 ischar=: 2=3!:0
 isscalar=: 0 = #@$
+quotes=: '"'&,@(,&'"')
 true=: 1
 false=: 0
 Null=: $0
@@ -35,7 +36,7 @@ end.
 )
 dec_array=: 3 : 0
 y=. dltb }.}:y
-if. 0=#y do. '' return. end.
+if. 0=#y do. $0 return. end.
 if. -. y +./@:e. '"{[' do. ,dec_num y return. end.
 dec1 each cutcommas y
 )
@@ -71,7 +72,7 @@ elseif. do.
   enc_num y
 end.
 )
-enc_char=: dquote @ encesc
+enc_char=: quotes @ encesc
 enc_num=: bk @ sepfmt`fmt @. isscalar
 enc_dict=: 3 : 0
 'rank>2 argument not supported' assert 2 = #$y
