@@ -80,6 +80,6 @@ enc_dict=: 3 : 0
 key=. '"' ,each ({."1 y) ,each <'":'
 val=. enc each {:"1 y
 rep=. ;key,.val ,each <',',LF
-bc (_2}.rep),LF
+bc LF,(_2}.rep),LF
 )
 cocurrent 'base'
