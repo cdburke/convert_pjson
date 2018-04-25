@@ -63,7 +63,11 @@ k;<v
 )
 enc=: 3 : 0
 if. 1<#$y do.
-  enc_dict y
+  if. (2=#$y) *. ischar y do.
+    enc <"1 y
+  else.
+    enc_dict y
+  end.
 elseif. isboxed y do.
   bk sep enc each y
 elseif. ischar y do.
