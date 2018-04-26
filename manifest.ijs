@@ -10,7 +10,9 @@ http://json.org/
 
 VERSION=: '1.0.3'
 
-RELEASE=: 'j805 j806 j807'
+RELEASE=: 'j805'
+
+FOLDER=: 'convert/pjson'
 
 FILES=: 0 : 0
 pjson.ijs

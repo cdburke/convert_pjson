@@ -1,0 +1,3 @@
+NB. init
+
+cocurrent 'pjson'
