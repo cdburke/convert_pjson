@@ -1,6 +1,6 @@
 NB. pjson manifest
 
-CAPTION=: 'pjson'
+CAPTION=: 'A json encoder/decoder'
 
 DESCRIPTION=: 0 : 0
 A json encoder/decoder
@@ -8,7 +8,7 @@ A json encoder/decoder
 http://json.org/
 )
 
-VERSION=: '1.0.3'
+VERSION=: '1.0.4'
 
 RELEASE=: 'j805'
 
