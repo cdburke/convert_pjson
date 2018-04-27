@@ -18,6 +18,9 @@ val=. 'a';,'a'
 enc val
 0 1 -: val=dec enc val
 
+NB. char matrix is encoded in rows:
+(<"1 A) -: dec enc A=. 'anne',:'bert'
+
 A=. 0 : 0
 [
   {
