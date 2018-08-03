@@ -1,8 +1,11 @@
 NB. encode
 
-fmt=: ,@(8!:2)
+fmtnum=: ,@(8!:2)
+fmtnums=: ' ' -.~ }.@,@(',' ,. >@{.@(8!:1)@,.)
+fmtint=: ,@('0'&(8!:2))
+fmtints=: ' ' -.~ }.@,@(',' ,. >@{.@('0'&(8!:1))@,.)
+
 sep=: }.@;@:(','&,each)
-sepfmt=: ' ' -.~ }.@,@(',' ,. >@{.@(8!:1)@,.)
 bc=: '{' , '}' ,~ ]
 bk=: '[' , ']' ,~ ]
 
@@ -12,6 +15,7 @@ encesc=: rplc&ESC
 remq=: ]`(}.@}:)@.('"' = {.)
 isboxed=: 0 < L.
 ischar=: 2=3!:0
+isfloat=: 8=3!:0
 isscalar=: 0 = #@$
 quotes=: '"'&,@(,&'"')
 true=: 1
@@ -49,7 +53,6 @@ if. 0=#y do. $0 return. end.
 if. -. y +./@:e. '"{[' do. ,dec_num y return. end.
 dec1 each cutcommas y
 )
-
 
 NB. =========================================================
 dec_num=: 3 : 0
@@ -89,14 +92,17 @@ elseif. isboxed y do.
   bk sep enc each y
 elseif. ischar y do.
   enc_char y
-elseif. do.
+elseif. isfloat y do.
   enc_num y
+elseif. do.
+  enc_int y
 end.
 )
 
 NB. =========================================================
 enc_char=: quotes @ encesc
-enc_num=: bk @ sepfmt`fmt @. isscalar
+enc_num=: bk @ fmtnums`fmtnum @. isscalar
+enc_int=: bk @ fmtints`fmtint @. isscalar
 
 NB. =========================================================
 NB. enc_dict

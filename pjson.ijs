@@ -1,7 +1,10 @@
 cocurrent 'pjson'
-fmt=: ,@(8!:2)
+fmtnum=: ,@(8!:2)
+fmtnums=: ' ' -.~ }.@,@(',' ,. >@{.@(8!:1)@,.)
+fmtint=: ,@('0'&(8!:2))
+fmtints=: ' ' -.~ }.@,@(',' ,. >@{.@('0'&(8!:1))@,.)
+
 sep=: }.@;@:(','&,each)
-sepfmt=: ' ' -.~ }.@,@(',' ,. >@{.@(8!:1)@,.)
 bc=: '{' , '}' ,~ ]
 bk=: '[' , ']' ,~ ]
 
@@ -11,6 +14,7 @@ encesc=: rplc&ESC
 remq=: ]`(}.@}:)@.('"' = {.)
 isboxed=: 0 < L.
 ischar=: 2=3!:0
+isfloat=: 8=3!:0
 isscalar=: 0 = #@$
 quotes=: '"'&,@(,&'"')
 true=: 1
@@ -40,7 +44,6 @@ if. 0=#y do. $0 return. end.
 if. -. y +./@:e. '"{[' do. ,dec_num y return. end.
 dec1 each cutcommas y
 )
-
 dec_num=: 3 : 0
 f=. 'false' I.@:E. y
 t=. 'true' I.@:E. y
@@ -72,12 +75,15 @@ elseif. isboxed y do.
   bk sep enc each y
 elseif. ischar y do.
   enc_char y
-elseif. do.
+elseif. isfloat y do.
   enc_num y
+elseif. do.
+  enc_int y
 end.
 )
 enc_char=: quotes @ encesc
-enc_num=: bk @ sepfmt`fmt @. isscalar
+enc_num=: bk @ fmtnums`fmtnum @. isscalar
+enc_int=: bk @ fmtints`fmtint @. isscalar
 enc_dict=: 3 : 0
 'rank>2 argument not supported' assert 2 = #$y
 'rank 2 argument must be a dictionary' assert (2 = {:$y) > 0 e. ischar &> {."1 y
