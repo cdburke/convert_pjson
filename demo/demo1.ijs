@@ -9,12 +9,14 @@ enc 1 0 1
 enc 4
 enc ,4
 enc 1 2 3
+enc i.2 3
 enc ;/i.2 3
 enc 'a'
 enc ,'a'
 enc 'hello'
 enc 'one';'two'
 enc 'one';<;/i.2 3
+enc _ __ _.
 
 dec '[false,3,true]'
 
@@ -36,9 +38,3 @@ dict=: (;:'items sales prices'),.(;:'nut bold cam cog');6 8 0 3;10 20 15 20
 enc dict
 dec enc dict
 dict -: dec enc dict
-
-NB. assert fails:
-Note''
-enc_pjson_ i.2 3
-enc_pjson_ i.2 3 4
-)

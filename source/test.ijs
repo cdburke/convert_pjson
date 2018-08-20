@@ -21,6 +21,9 @@ enc val
 NB. char matrix is encoded in rows:
 (<"1 A) -: dec enc A=. 'anne',:'bert'
 
+NB. _ __ and _. are encoded as null:
+'[1,2,null]' -: enc 1 2 _
+
 A=. 0 : 0
 [
   {

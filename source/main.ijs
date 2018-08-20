@@ -1,9 +1,9 @@
 NB. encode
 
-fmtnum=: ,@(8!:2)
-fmtnums=: ' ' -.~ }.@,@(',' ,. >@{.@(8!:1)@,.)
-fmtint=: ,@('0'&(8!:2))
-fmtints=: ' ' -.~ }.@,@(',' ,. >@{.@('0'&(8!:1))@,.)
+fmtnum=: ,@('d<null>'&(8!:2))
+fmtnums=: ' ' -.~ }.@,@(',' ,. >@{.@('d<null>'&(8!:1))@,.)
+fmtint=: ,@('d<null>0'&(8!:2))
+fmtints=: ' ' -.~ }.@,@(',' ,. >@{.@('d<null>0'&(8!:1))@,.)
 
 sep=: }.@;@:(','&,each)
 bc=: '{' , '}' ,~ ]
@@ -83,10 +83,10 @@ k;<v
 NB. =========================================================
 enc=: 3 : 0
 if. 1<#$y do.
-  if. (2=#$y) *. ischar y do.
-    enc <"1 y
-  else.
+  if. isboxed y do.
     enc_dict y
+  else.
+    bk sep <@enc"_1 y
   end.
 elseif. isboxed y do.
   bk sep enc each y
