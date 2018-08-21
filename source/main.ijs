@@ -18,9 +18,12 @@ ischar=: 2=3!:0
 isfloat=: 8=3!:0
 isscalar=: 0 = #@$
 quotes=: '"'&,@(,&'"')
-true=: 1
+
 false=: 0
-Null=: $0
+true=: 1
+
+NB. this can be set by user
+NULL=: 0
 
 NB. =========================================================
 cutcommas=: 3 : 0
@@ -56,13 +59,13 @@ dec1 each cutcommas y
 
 NB. =========================================================
 dec_num=: 3 : 0
-f=. 'false' I.@:E. y
-t=. 'true' I.@:E. y
-if. (0<#f) +. 0<#t do.
-  n=. (,f +/ 1 2 3 4),,t +/ 1 2 3
-  y=. (<<<n) { '1' t} '0' f} y
-end.
-0 ". ' ' (I.y=',')} y
+nms=. ;: 'false true null'
+res=. 0 ". ' ' (I.y=',')} y
+if. -. 1 e. ,nms E.&> <y do. return. end.
+nos=. <;._1 ',',y -. ' '
+'f t n'=. nos&(I.@:= <) each nms
+res=. true t} false f} res
+if. #n do. NULL n} res end.
 )
 
 NB. =========================================================

@@ -22,8 +22,12 @@ NB. char matrix is encoded in rows:
 (<"1 A) -: dec enc A=. 'anne',:'bert'
 
 NB. _ __ and _. are encoded as null:
-'[1,2,null]' -: enc 1 2 _
+'[1,2,null,3,null,null]' -: enc 1 2 _ 3 __ _.
 
+NB. false,true,null are decoded to 0,1,NULL
+(10 0 1,NULL,11) -: dec '10,false,true,null,11'
+
+NB. decode typical json data:
 A=. 0 : 0
 [
   {

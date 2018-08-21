@@ -8,7 +8,7 @@ A json encoder/decoder
 http://json.org/
 )
 
-VERSION=: '1.0.8'
+VERSION=: '1.0.9'
 
 RELEASE=: 'j805'
 
