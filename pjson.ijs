@@ -8,7 +8,7 @@ sep=: }.@;@:(','&,each)
 bc=: '{' , '}' ,~ ]
 bk=: '[' , ']' ,~ ]
 
-ESC=: _2[\(CR;'\r';LF;'\n';TAB;'\t';'"';'\"';'\';'\\';'/';'\/')
+ESC=: _2[\(CR;'\r';LF;'\n';TAB;'\t';(8{a.);'\b';FF;'\f';'"';'\"';'\';'\\';'/';'\/')
 decesc=: rplc&(1|."1 ESC)
 encesc=: rplc&ESC
 remq=: ]`(}.@}:)@.('"' = {.)
@@ -93,4 +93,5 @@ val=. enc each {:"1 y
 rep=. ;key,.val ,each <',',LF
 bc LF,(_2}.rep),LF
 )
+finalize_pjson_^:(3=(4!:0)@<) 'finalize_pjson_'
 cocurrent 'base'
