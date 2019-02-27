@@ -8,7 +8,7 @@ A json encoder/decoder
 http://json.org/
 )
 
-VERSION=: '1.0.13'
+VERSION=: '1.0.14'
 
 RELEASE=: 'j805'
 FOLDER=: 'convert/pjson'
