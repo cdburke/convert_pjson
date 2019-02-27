@@ -9,6 +9,8 @@ sep=: }.@;@:(','&,each)
 bc=: '{' , '}' ,~ ]
 bk=: '[' , ']' ,~ ]
 
+fixchar=: ]
+
 ESC=: _2[\(CR;'\r';LF;'\n';TAB;'\t';(8{a.);'\b';FF;'\f';'"';'\"';'\';'\\';'/';'\/')
 decesc=: rplc&(1|."1 ESC)
 encesc=: rplc&ESC
@@ -103,7 +105,7 @@ end.
 )
 
 NB. =========================================================
-enc_char=: quotes @ encesc
+enc_char=: quotes @ encesc @ fixchar
 enc_num=: bk @ fmtnums`fmtnum @. isscalar
 enc_int=: bk @ fmtints`fmtint @. isscalar
 
