@@ -34,6 +34,7 @@ dec1 dltb ' ' (y I.@:e. TAB,CRLF)} y
 )
 dec1=: 3 : 0
 if. 0=#y do. '' return. end.
+if. y-:'null' do. NULL return. end.
 select. {. y
 case. '{' do. dec_object y
 case. '[' do. dec_array y
@@ -62,7 +63,7 @@ if. 0=#y do. '' return. end.
 dec_object1 &> a: -.~ cutcommas y
 )
 dec_object1=: 3 : 0
-n=. y i. ':'
+n=. 1 i.~ (y=':') > ~:/\y='"'
 k=. remq dltb n {. y
 v=. dec1 dltb (n+1) }. y
 k;<v
