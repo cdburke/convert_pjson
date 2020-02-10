@@ -30,7 +30,16 @@ m=. *./ (m < y=','), 0 = _2 +/\ @ (-/)\ m <"1 '{}[]'=/y
 m <@dltb;._1 y
 )
 dec=: 3 : 0
-dec1 dltb ' ' (y I.@:e. TAB,CRLF)} y
+r=. dec1 dltb ' ' (y I.@:e. TAB,CRLF)} y
+if. 1<L.r do.
+  if. 1=#~.#&>r do.
+    r0=. >{.,r
+    if. -.(2=#$r0)*.(2={:$r0)*.(2=3!:0>{.,r0) do.
+      r=. >r
+    end.
+  end.
+end.
+r
 )
 dec1=: 3 : 0
 if. 0=#y do. '' return. end.
@@ -71,7 +80,15 @@ k;<v
 enc=: 3 : 0
 if. 1<#$y do.
   if. isboxed y do.
-    enc_dict y
+    if. (2 = #$y) do.
+      if. (2 = {:$y) > 0 e. ischar &> {."1 y do.
+        enc_dict y
+      else.
+        enc <"1 y
+      end.
+    else.
+      'rank>2 argument not supported' assert 2 = #$y
+    end.
   else.
     bk sep <@enc"_1 y
   end.
