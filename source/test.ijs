@@ -6,16 +6,16 @@ load 'convert/pjson'
 cocurrent 'pjson'
 
 val=. 1;(,1);1 0 1;1 3 7;1 3.3 7;(,'a');'hello'
-1: echo enc val
+enc val
 val -: dec enc val
 
 dict=. (;:'items sales prices'),.(;:'nut bold cam cog');6 8 0 3;10 20 15 20
-1: echo enc dict
+enc dict
 dict -: dec enc dict
 
 NB. single character is returned as list
 val=. 'a';,'a'
-1: echo enc val
+enc val
 0 1 -: val=dec enc val
 
 NB. char matrix is encoded in rows:
@@ -42,27 +42,6 @@ A=. 0 : 0
 ]
 )
 
-1: echo dec A
-1: echo enc dec A
+dec A
+enc dec A
 (dec A) -: dec enc dec A
-
-NB. dictionary rank-2 boxed array
-B=. }: (0 : 0)   NB. remove last LF
-{
-"aa":1,
-"bb":2,
-"cc":3,
-"dd":4
-}
-)
-
-B -: enc A=. (1;2;3;4),.~'aa';'bb';'cc';'dd'
-A -: dec B
-
-NB. non-dictionary rank-2 boxed array
-'[[0,1,2,3],[4,5,6,7],[8,9,10,11]]' -: enc <"0 i. 3 4
-  
-'[[[0],[1],[2],[3]],[[4],[5],[6],[7]],[[8],[9],[10],[11]]]' -: enc <&.> <"0 i. 3 4
-
-'[[1,"aa"],[2,"bb"],[3,"cc"],[4,"dd"]]' -: enc A=. (1;2;3;4),.'aa';'bb';'cc';'dd'
-A -: dec enc A
