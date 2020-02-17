@@ -25,7 +25,16 @@ NB. _ __ and _. are encoded as null:
 '[1,2,null,3,null,null]' -: enc 1 2 _ 3 __ _.
 
 NB. false,true,null are decoded to 0,1,NULL
-(10 0 1,NULL,11) -: dec '10,false,true,null,11'
+(10 0 1,({.NULL),11) -: dec '10,false,true,null,11'
+
+NB. alternate NULL
+NULL_pjson_=: 0$0
+
+NB. false,true,null are decoded to 0,1,NULL
+(10 0 1,({.NULL),11) -: dec '10,false,true,null,11'
+
+NB. null for string array
+('ab';'';'cd';'';'')-:dec_pjson_ '["ab",null,"cd",null,null]'
 
 NB. decode typical json data:
 A=. 0 : 0
@@ -38,6 +47,10 @@ A=. 0 : 0
     "animation": true,
     "title": {display: true, format: "e2", text: "my plot2"},
     "ytics": [2,3.5,5,6.5]
+  }, {
+    "animation": true,
+    "title": {display: true, format: null, text: "no plot"},
+    "ytics": [5,3.5,null,0]
   }
 ]
 )
@@ -45,3 +58,11 @@ A=. 0 : 0
 dec A
 enc dec A
 (dec A) -: dec enc dec A
+
+NB. original default NULL
+NULL_pjson_=: 0
+
+dec A
+enc dec A
+(dec A) -: dec enc dec A
+

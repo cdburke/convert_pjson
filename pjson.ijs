@@ -55,7 +55,7 @@ if. -. 1 e. ,nms E.&> <y do. return. end.
 nos=. <;._1 ',',y -. ' '
 'f t n'=. nos&(I.@:= <) each nms
 res=. true t} false f} res
-if. #n do. NULL n} res end.
+if. #n do. ({.NULL) n} res end.
 )
 dec_object=: 3 : 0
 y=. }.}:y
