@@ -24,8 +24,9 @@ quotes=: '"'&,@(,&'"')
 false=: 0
 true=: 1
 
-NB. this can be set by user
+NB. these can be set by user
 NULL=: 0
+ESS=: a:
 
 NB. =========================================================
 cutcommas=: 3 : 0
@@ -45,6 +46,7 @@ dec1=: 3 : 0
 if. 0=#y do. '' return. end.
 if. y-:'null' do. NULL return. end.
 select. {. y
+case. ESS do. ". }. y
 case. '{' do. dec_object y
 case. '[' do. dec_array y
 case. '"' do. decesc }.}:y
@@ -97,6 +99,7 @@ if. 1<#$y do.
 elseif. isboxed y do.
   bk sep enc each y
 elseif. ischar y do.
+  if. ESS = {. y do. }. y return. end.
   enc_char y
 elseif. isfloat y do.
   enc_num y
