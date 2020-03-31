@@ -26,7 +26,7 @@ NULL=: 0
 ESS=: a:
 cutcommas=: 3 : 0
 y=. ',',y
-m=. ~:/\y='"'
+m=. ~:/\'"'= ('\"';2#{.a.) rplc~ y
 m=. *./ (m < y=','), 0 = _2 +/\ @ (-/)\ m <"1 '{}[]'=/y
 m <@dltb;._1 y
 )
@@ -65,7 +65,7 @@ if. 0=#y do. '' return. end.
 dec_object1 &> a: -.~ cutcommas y
 )
 dec_object1=: 3 : 0
-n=. 1 i.~ (y=':') > ~:/\y='"'
+n=. 1 i.~ (y=':') > ~:/\'"'= ('\"';2#{.a.) rplc~ y
 k=. remq dltb n {. y
 v=. dec1 dltb (n+1) }. y
 k;<v
