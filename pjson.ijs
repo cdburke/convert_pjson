@@ -66,7 +66,7 @@ dec_object1 &> a: -.~ cutcommas y
 )
 dec_object1=: 3 : 0
 n=. 1 i.~ (y=':') > ~:/\'"'= ('\"';2#{.a.) rplc~ y
-k=. remq dltb n {. y
+k=. decesc remq dltb n {. y
 v=. dec1 dltb (n+1) }. y
 k;<v
 )
@@ -94,7 +94,7 @@ enc_int=: bk @ fmtints`fmtint @. isscalar
 enc_dict=: 3 : 0
 'rank>2 argument not supported' assert 2 = #$y
 'rank 2 argument must be a dictionary' assert (2 = {:$y) > 0 e. ischar &> {."1 y
-key=. '"' ,each ({."1 y) ,each <'":'
+key=. (enc_char each ({."1 y)) , each <':'
 val=. enc each {:"1 y
 rep=. ;key,.val ,each <',',LF
 bc LF,(_2}.rep),LF

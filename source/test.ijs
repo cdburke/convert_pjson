@@ -65,3 +65,6 @@ NULL_pjson_=: 0
 dec A
 enc dec A
 (dec A) -: dec enc dec A
+
+A -: dec_pjson_ enc_pjson_ A=. 2 2$ 'a';'b';'c"df/e';'h/'
+
