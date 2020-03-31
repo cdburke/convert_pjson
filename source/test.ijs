@@ -28,13 +28,13 @@ NB. false,true,null are decoded to 0,1,NULL
 (10 0 1,({.NULL),11) -: dec '10,false,true,null,11'
 
 NB. alternate NULL
-NULL_pjson_=: 0$0
+NULL=: 0$0
 
 NB. false,true,null are decoded to 0,1,NULL
 (10 0 1,({.NULL),11) -: dec '10,false,true,null,11'
 
 NB. null for string array
-('ab';'';'cd';'';'')-:dec_pjson_ '["ab",null,"cd",null,null]'
+('ab';'';'cd';'';'')-:dec '["ab",null,"cd",null,null]'
 
 NB. decode typical json data:
 A=. 0 : 0
@@ -60,11 +60,10 @@ enc dec A
 (dec A) -: dec enc dec A
 
 NB. original default NULL
-NULL_pjson_=: 0
+NULL=: 0
 
 dec A
 enc dec A
 (dec A) -: dec enc dec A
 
-A -: dec_pjson_ enc_pjson_ A=. 2 2$ 'a';'b';'c"df/e';'h/'
-
+A -: dec enc A=. 2 2$ 'a\"';'b"b';'c"df/e';'h/'
