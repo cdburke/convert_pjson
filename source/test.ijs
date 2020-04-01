@@ -66,4 +66,5 @@ dec A
 enc dec A
 (dec A) -: dec enc dec A
 
-A -: dec enc A=. 2 2$ 'a\"';'b"b';'c"df/e';'h/'
+A -: dec enc A=.  'a\"';'b"b\';'c"df/e';'h/'
+A -: dec enc A=. 2 2$ 'a\"';'b"b\';'c"df/e';'h/'

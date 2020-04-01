@@ -82,7 +82,7 @@ dec_object1 &> a: -.~ cutcommas y
 
 NB. =========================================================
 dec_object1=: 3 : 0
-n=. 1 i.~ (y=':') > ~:/\'"'= ('\"';2#{.a.) rplc~ y
+n=. 1 i.~ (y=':') > ~:/\'"'= y rplc '\\';'aa';'\"';'aa'
 k=. decesc remq dltb n {. y
 v=. dec1 dltb (n+1) }. y
 k;<v
