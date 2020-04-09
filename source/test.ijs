@@ -27,9 +27,6 @@ NB. _ __ and _. are encoded as null:
 NB. false,true,null are decoded to 0,1,NULL
 (10 0 1,({.NULL),11) -: dec '10,false,true,null,11'
 
-NB. alternate NULL
-NULL=: 0$0
-
 NB. false,true,null are decoded to 0,1,NULL
 (10 0 1,({.NULL),11) -: dec '10,false,true,null,11'
 
@@ -58,9 +55,6 @@ A=. 0 : 0
 dec A
 enc dec A
 (dec A) -: dec enc dec A
-
-NB. original default NULL
-NULL=: 0
 
 dec A
 enc dec A

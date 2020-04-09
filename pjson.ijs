@@ -22,7 +22,7 @@ quotes=: '"'&,@(,&'"')
 
 false=: 0
 true=: 1
-NULL=: 0
+NULL=: $0
 ESS=: a:
 cutcommas=: 3 : 0
 y=. ',',y

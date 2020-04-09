@@ -25,7 +25,7 @@ false=: 0
 true=: 1
 
 NB. these can be set by user
-NULL=: 0
+NULL=: $0
 ESS=: a:
 
 NB. =========================================================
