@@ -22,11 +22,18 @@ quotes=: '"'&,@(,&'"')
 
 false=: 0
 true=: 1
-NULL=: $0
+NULL=: 0$0
 ESS=: a:
+nos=: 4 : 0
+ s=. x I.@E. y
+ i=. s I. s+#x
+ (i.#y) e. (s,_1) {~ (i,_1) {~^:a: 0
+)
+tc=: ,&_1 {~^:a: 0:
+nos1=: i.@#@] e. #@[ (tc@(]I.+) { _1,~]) I.@E.
 cutcommas=: 3 : 0
 y=. ',',y
-m=. ~:/\'"' = y rplc '\\';'aa';'\"';'aa'
+m=. ~:/\ ('"' = y)  > (_2 (|.!.0) '\\' nos y) < (_1 (|.!.0) '\"' E. y)
 m=. *./ (m < y=','), 0 = _2 +/\ @ (-/)\ m <"1 '{}[]'=/y
 m <@dltb;._1 y
 )
@@ -60,12 +67,11 @@ res=. true t} false f} res
 if. #n do. ({.NULL) n} res end.
 )
 dec_object=: 3 : 0
-y=. }.}:y
-if. 0=#y do. '' return. end.
-dec_object1 &> a: -.~ cutcommas y
+if. 2=#y do. '' return. end.
+dec_object1 &> a: -.~ cutcommas }.}:y
 )
 dec_object1=: 3 : 0
-n=. 1 i.~ (y=':') > ~:/\'"'= y rplc '\\';'aa';'\"';'aa'
+n=. 1 i.~ (y=':') > ~:/\ ('"'= y) > (_2 (|.!.0) '\\' nos y) < (_1 (|.!.0) '\"' E. y)
 k=. decesc remq dltb n {. y
 v=. dec1 dltb (n+1) }. y
 k;<v

@@ -1,21 +1,22 @@
 NB. test pjson
 NB. all match results should be 1
+NB. 0!:2<'test.ijs'
 
 load 'convert/pjson'
 
 cocurrent 'pjson'
 
 val=. 1;(,1);1 0 1;1 3 7;1 3.3 7;(,'a');'hello'
-enc val
+echo enc val
 val -: dec enc val
 
 dict=. (;:'items sales prices'),.(;:'nut bold cam cog');6 8 0 3;10 20 15 20
-enc dict
+echo enc dict
 dict -: dec enc dict
 
 NB. single character is returned as list
 val=. 'a';,'a'
-enc val
+echo enc val
 0 1 -: val=dec enc val
 
 NB. char matrix is encoded in rows:
@@ -24,8 +25,10 @@ NB. char matrix is encoded in rows:
 NB. _ __ and _. are encoded as null:
 '[1,2,null,3,null,null]' -: enc 1 2 _ 3 __ _.
 
-NB. false,true,null are decoded to 0,1,NULL
-(10 0 1,({.NULL),11) -: dec '10,false,true,null,11'
+'' -: dec 'null'
+(,0) -: dec '[null]'
+(,<,0) -: dec '[[null]]'
+0 0 -: dec '[null,null]'
 
 NB. false,true,null are decoded to 0,1,NULL
 (10 0 1,({.NULL),11) -: dec '10,false,true,null,11'
@@ -52,13 +55,18 @@ A=. 0 : 0
 ]
 )
 
-dec A
-enc dec A
+echo dec A
+echo enc dec A
 (dec A) -: dec enc dec A
 
-dec A
-enc dec A
+echo dec A
+echo enc dec A
 (dec A) -: dec enc dec A
 
+NB. escape
 A -: dec enc A=.  'a\"';'b"b\';'c"df/e';'h/'
 A -: dec enc A=. 2 2$ 'a\"';'b"b\';'c"df/e';'h/'
+
+NB. dictionary
+NB. json string and object always rank-1
+A -:&:(,&.>) dec enc A=. _2]\'a';23;'b';'x';'c';<<'asdf'

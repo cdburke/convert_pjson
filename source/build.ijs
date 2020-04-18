@@ -10,6 +10,6 @@ f=. 3 : 0
 
 f 'manifest.ijs'
 f 'pjson.ijs'
-f 'readme.txt'
+NB. f 'readme.txt'
 f 'demo/demo1.ijs'
 f 'demo/demo2.ijs'
