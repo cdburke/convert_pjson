@@ -15,7 +15,7 @@ decesc=: rplc&(1|."1 ESC)
 encesc=: rplc&ESC
 remq=: ]`(}.@}:)@.('"' = {.)
 isboxed=: 0 < L.
-ischar=: 2=3!:0
+ischar=: 2 131072 262144 e.~ 3!:0
 isfloat=: 8=3!:0
 isscalar=: 0 = #@$
 quotes=: '"'&,@(,&'"')
