@@ -19,6 +19,10 @@ val=. 'a';,'a'
 echo enc val
 0 1 -: val=dec enc val
 
+NB. booleans
+'[false,true,false,true,true]' -: enc 0 1 0 1 1
+A -: dec enc A=: 0 1 0 1 1
+
 NB. char matrix is encoded in rows:
 (<"1 A) -: dec enc A=. 'anne',:'bert'
 
@@ -64,7 +68,7 @@ echo enc dec A
 (dec A) -: dec enc dec A
 
 NB. escape
-A -: dec enc A=.  'a\"';'b"b\';'c"df/e';'h/'
+A -: dec enc A=. 'a\"';'b"b\';'c"df/e';'h/'
 A -: dec enc A=. 2 2$ 'a\"';'b"b\';'c"df/e';'h/'
 
 NB. dictionary

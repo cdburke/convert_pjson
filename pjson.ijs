@@ -1,4 +1,6 @@
 cocurrent 'pjson'
+fmtbool=: >@{&('false';'true')
+fmtbools=: }.@; @: {&(',false';',true')
 fmtnum=: ,@('d<null>'&(8!:2))
 fmtnums=: ' ' -.~ }.@,@(',' ,. >@{.@('d<null>'&(8!:1))@,.)
 fmtint=: ,@('d<null>0'&(8!:2))
@@ -14,6 +16,7 @@ ESC=: _2[\('\';'\\';CR;'\r';LF;'\n';TAB;'\t';(8{a.);'\b';FF;'\f';'"';'\"';'/';'\
 decesc=: rplc&(1|."1 ESC)
 encesc=: rplc&ESC
 remq=: ]`(}.@}:)@.('"' = {.)
+isbool=: 1=3!:0
 isboxed=: 0 < L.
 ischar=: 2=3!:0
 isfloat=: 8=3!:0
@@ -83,6 +86,8 @@ if. 1<#$y do.
   else.
     bk sep <@enc"_1 y
   end.
+elseif. isbool y do.
+  enc_bool y
 elseif. isboxed y do.
   bk sep enc each y
 elseif. ischar y do.
@@ -94,6 +99,7 @@ elseif. do.
   enc_int y
 end.
 )
+enc_bool=: bk @ fmtbools`fmtbool @. isscalar
 enc_char=: quotes @ encesc @ fixchar
 enc_num=: bk @ fmtnums`fmtnum @. isscalar
 enc_int=: bk @ fmtints`fmtint @. isscalar
